@@ -92,15 +92,15 @@
                                             <li><i class="linearicons-bag-dollar"></i> Cash on Delivery available</li>
                                         </ul>
                                     </div>
-                                    <div class="pr_switch_wrap">
-                                        <span class="switch_lable">Color</span>
+                                    <h6 class="product-title">Select color</h6>
+                                    <div class="color-selector inline">
                                         @foreach($productColors as $key1 => $productColor)
-                                        <div class="product_color_switch">
-                                            <span class="active" data-color="#87554B"></span>
-                                            <span data-color="{{ $productColor->color->code }}"></span>
-                                            <input type="hidden" name="color" value="{{ $productColor->color->name }}"/>
-
-                                        </div>
+{{--                                                        <label> <input type="radio" {{ $key1 == 0 ? 'checked' : '' }} name="color" value="{{$productColor->color->name}}"/> {{$productColor->color->name}} </label>--}}
+{{--                                                        <label> <input type="checkbox" {{ $key1 == 0 ? 'checked' : '' }} name="color" value="{{$productColor->color->name}}"/> {{$productColor->color->name}} </label>--}}
+                                            <label class="text-center">
+                                                <input type="checkbox" class="textcheck" style="accent-color:{{ $productColor->color->code }}" {{ $key1 == 0 ? 'checked' : ' '}} name="color" value="{{ $productColor->color->name }}"/>
+                                                <b style="font-size: 1.2rem">{{ $productColor->color->name }}</b>
+                                            </label>
                                         @endforeach
                                     </div>
                                     <div class="pr_switch_wrap">

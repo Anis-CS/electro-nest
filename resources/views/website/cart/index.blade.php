@@ -54,7 +54,7 @@
                                             <td class="product-name" data-title="Product"><a href="#">
                                                     <b>Name : </b> {{ $cart->name }} <br/>
                                                     <b>Code :</b> {{$cart->weight}} <br/>
-                                                    <b>Color :</b> {{$cart->options->color}} &
+                                                    <b>Color :</b> {{$cart->options->color}} <br/>
                                                     <b>Size :</b> {{$cart->options->size}} <br/>
                                                 </a>
 
