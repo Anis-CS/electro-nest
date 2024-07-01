@@ -49,7 +49,7 @@
                                     <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Account details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login.html"><i class="ti-lock"></i>Logout</a>
+                                    <a class="nav-link" href="{{ route('customer.logout') }}"><i class="ti-lock"></i>Logout</a>
                                 </li>
                             </ul>
                         </div>

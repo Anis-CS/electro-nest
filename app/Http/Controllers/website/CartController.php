@@ -19,7 +19,6 @@ class CartController extends Controller
     {
         return view('website.cart.index',[
             'carts' => Cart::content(),
-            'policy' => PrivacyAndPolicy::latest()->first(),
         ]);
     }
 
@@ -36,7 +35,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-                      
+
         $this->product = Product::find($request->id);
         Cart::add([
             'id'        => $request->id,

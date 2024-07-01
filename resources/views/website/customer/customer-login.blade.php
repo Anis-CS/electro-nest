@@ -37,13 +37,14 @@
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
                                     <h3>Login</h3>
+                                    <p>{{ session('message') }}</p>
                                 </div>
                                 <form action="{{ route('customer.login') }}" method="post" class="theme-form">
                                     @csrf
 
                                     <div class="form-group mb-3">
-                                        <input type="text" required="" class="form-control" name="email"
-                                            placeholder="Your Email">
+                                        <input type="text" required="" class="form-control" name="user_name"
+                                            placeholder="Your Email Or Phone">
                                     </div>
                                     <div class="form-group mb-3">
                                         <input class="form-control" required="" type="password" name="password"

@@ -109,7 +109,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="#" class="btn btn-fill-out">Proceed To CheckOut</a>
+                            <a href="{{ route('checkout') }}" class="btn btn-fill-out">Proceed To CheckOut</a>
                         </div>
                     </div>
                 </div>

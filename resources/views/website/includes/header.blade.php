@@ -74,7 +74,7 @@
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li style="border-bottom: 0px solid #3f3f3f;">
-                                    <a href="#"><i class="ti-user"></i> Prodile</a>
+                                    <a href="{{ route('customerProfile') }}"><i class="ti-user"></i> Profile</a>
                                 </li>
                                 <li style="border-bottom: 0px solid #3f3f3f;">
                                     <a href="{{route('customer.logout')}}"><i class="fa fa-sign-in-alt"></i> Logout</a>

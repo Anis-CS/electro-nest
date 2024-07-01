@@ -13,20 +13,14 @@ class CustomerController extends Controller
     private $customer, $orders, $orderDetail, $customer_id, $wishlist;
 
     // customer Register
-    public function index()
+    public function RegistrationForm()
     {
-        return view('website.customer.customer-register',[
-            'policy' => PrivacyAndPolicy::latest()->first(),
-
-        ]);
+        return view('website.customer.customer-register');
     }
 
-    public function loginFrom()
+    public function loginForm()
     {
-        return view('website.customer.customer-login',[
-            'policy' => PrivacyAndPolicy::latest()->first(),
-
-        ]);
+        return view('website.customer.customer-login');
     }
 
     public function customerLoginCheck(Request $request)
@@ -37,14 +31,26 @@ class CustomerController extends Controller
             Session::forget(Session::get('product_id'));
             return  redirect('product-detail/' . $productId);
         }
-        return redirect(route('home'));
+        if (session::get('customer_id')){
+            return redirect('/');
+        }else
+        {
+            return back();
+        }
+
     }
 
     public function saveCustomerInfo(Request $request)
     {
-        Customer::saveInfo($request);
+        $this->customer = Customer::saveInfo($request);
         Session::put('customer_id', $this->customer->id);
-        Session::put('customer_name', $this->customer->fname);
-        return redirect(route('customer.login'));
+        Session::put('customer_name', $this->customer->name);
+        return redirect('/');
+    }
+    public function logout(){
+        Session::forget('customer_id');
+        Session::forget('customer_name');
+
+        return redirect('/');
     }
 }

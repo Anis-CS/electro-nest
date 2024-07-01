@@ -22,7 +22,6 @@ class CategoryByProductController extends Controller
             'ShippingAreas'=>ShippingArea::all(),
             'categories'=>Category::where('status',1)->get(),
             'subCategories' => SubCategory::where('status', 1)->get(),
-            'policy' => PrivacyAndPolicy::latest()->first(),
         ]);
     }
     public function subCategoryWiseProduct($id){
@@ -33,7 +32,6 @@ class CategoryByProductController extends Controller
             'subcategories'=>SubCategory::where('status',1)->get(),
             'categories' => Category::where('status',1)->get(),
             'subCategories' => SubCategory::where('status', 1)->get(),
-            'policy' => PrivacyAndPolicy::latest()->first(),
         ]);
     }
 }

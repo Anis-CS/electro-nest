@@ -54,22 +54,21 @@
                                             placeholder="Enter Your Phone">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input class="form-control" required="" type="password" name="password"
+                                        <input class="form-control" type="password" name="password"
                                             placeholder="Password">
                                     </div>
                                     <div class="login_footer form-group mb-3">
                                         <div class="chek-form">
                                             <div class="custome-checkbox">
                                                 <input class="form-check-input" type="checkbox" name="checkbox"
-                                                    id="exampleCheckbox2" value="" required>
+                                                    id="exampleCheckbox2" value="Yes" required>
                                                 <label class="form-check-label" for="exampleCheckbox2"><span>I agree to
                                                         terms &amp; Policy.</span></label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <button type="submit" class="btn btn-fill-out btn-block"
-                                            name="register">Register</button>
+                                        <button type="submit" class="btn btn-fill-out btn-block">Register</button>
                                     </div>
                                 </form>
                                 <div class="different_login">

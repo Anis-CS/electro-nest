@@ -31,7 +31,7 @@
                             <!-- customer -->
                             @if (Session::get('customer_id'))
                                 <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#"
-                                        data-bs-toggle="dropdown"><i class="ti-user"></i><span>
+                                                                      data-bs-toggle="dropdown"><i class="ti-user"></i><span>
                                             {{ Session::get('customer_name') }}</span></a>
                                     <div class="cart_box dropdown-menu dropdown-menu-right">
                                         <ul class="cart_list">
@@ -50,8 +50,8 @@
                                     <a href="{{ route('customer.login') }}"><i
                                             class="ti-user"></i><span>Login</span></a>
                                 </li>
-                            @endif
-                            <!-- customer -->
+                        @endif
+                        <!-- customer -->
 
 
                             <li class="dropdown">
@@ -61,7 +61,7 @@
                                     <ul>
                                         <li>
                                             <a class="dropdown-item nav-link nav_item"
-                                                href="{{ route('policyone') }}">{{ $policy->one_name }}</a>
+                                               href="{{ route('policyone') }}">{{ $policy->one_name }}</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item nav-link nav_item" href="{{ route('policytwo') }}"
@@ -92,7 +92,7 @@
                     <img class="logo_dark" src="{{ asset('/') }}website/assets/images/el_logo1.png" style="height: 60px; width: 250px;" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-expanded="false">
+                        data-bs-target="#navbarSupportedContent" aria-expanded="false">
                     <span class="ion-android-menu"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent">
@@ -110,51 +110,51 @@
                                                 <ul>
                                                     <li class="dropdown-header">Phone</li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-list.html">shop List view</a></li>
+                                                           href="shop-list.html">shop List view</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-list-left-sidebar.html">shop List Left
+                                                           href="shop-list-left-sidebar.html">shop List Left
                                                             Sidebar</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-list-right-sidebar.html">shop List Right
+                                                           href="shop-list-right-sidebar.html">shop List Right
                                                             Sidebar</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-left-sidebar.html">Left Sidebar</a></li>
+                                                           href="shop-left-sidebar.html">Left Sidebar</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-right-sidebar.html">Right Sidebar</a></li>
+                                                           href="shop-right-sidebar.html">Right Sidebar</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-load-more.html">Shop Load More</a></li>
+                                                           href="shop-load-more.html">Shop Load More</a></li>
                                                 </ul>
                                             </li>
                                             <li class="mega-menu-col col-lg-4">
                                                 <ul>
                                                     <li class="dropdown-header">Laptop</li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-cart.html">Cart</a></li>
+                                                           href="shop-cart.html">Cart</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="checkout.html">Checkout</a></li>
+                                                           href="checkout.html">Checkout</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="my-account.html">My Account</a></li>
+                                                           href="my-account.html">My Account</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="wishlist.html">Wishlist</a></li>
+                                                           href="wishlist.html">Wishlist</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="compare.html">compare</a></li>
+                                                           href="compare.html">compare</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="order-completed.html">Order Completed</a></li>
+                                                           href="order-completed.html">Order Completed</a></li>
                                                 </ul>
                                             </li>
                                             <li class="mega-menu-col col-lg-4">
                                                 <ul>
                                                     <li class="dropdown-header">Speaker</li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-product-detail.html">Default</a></li>
+                                                           href="shop-product-detail.html">Default</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-product-detail-left-sidebar.html">Left
+                                                           href="shop-product-detail-left-sidebar.html">Left
                                                             Sidebar</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-product-detail-right-sidebar.html">Right
+                                                           href="shop-product-detail-right-sidebar.html">Right
                                                             Sidebar</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item"
-                                                            href="shop-product-detail-thumbnails-left.html">Thumbnails
+                                                           href="shop-product-detail-thumbnails-left.html">Thumbnails
                                                             Left</a></li>
                                                 </ul>
                                             </li>
@@ -164,17 +164,17 @@
                                         <ul>
                                             <li class="dropdown-header">TV</li>
                                             <li><a class="dropdown-item nav-link nav_item"
-                                                    href="shop-cart.html">Cart</a></li>
+                                                   href="shop-cart.html">Cart</a></li>
                                             <li><a class="dropdown-item nav-link nav_item"
-                                                    href="checkout.html">Checkout</a></li>
+                                                   href="checkout.html">Checkout</a></li>
                                             <li><a class="dropdown-item nav-link nav_item" href="my-account.html">My
                                                     Account</a></li>
                                             <li><a class="dropdown-item nav-link nav_item"
-                                                    href="wishlist.html">Wishlist</a></li>
+                                                   href="wishlist.html">Wishlist</a></li>
                                             <li><a class="dropdown-item nav-link nav_item"
-                                                    href="compare.html">compare</a></li>
+                                                   href="compare.html">compare</a></li>
                                             <li><a class="dropdown-item nav-link nav_item"
-                                                    href="order-completed.html">Order Completed</a></li>
+                                                   href="order-completed.html">Order Completed</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -190,7 +190,7 @@
                                 <ul>
                                     <li>
                                         <a class="dropdown-item nav-link nav_item"
-                                            href="{{ route('policyone') }}">{{ $policy->one_name }}</a>
+                                           href="{{ route('policyone') }}">{{ $policy->one_name }}</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item nav-link nav_item" href="{{ route('policytwo') }}"
@@ -225,7 +225,7 @@
                         <div class="search_overlay"></div>
                     </li>
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="{{ route('cart') }}"
-                            data-bs-toggle="dropdown"><i class="linearicons-cart"></i></a>
+                                                          data-bs-toggle="dropdown"><i class="linearicons-cart"></i></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li>
@@ -258,4 +258,3 @@
         </div>
     </div>
 </header>
-<!-- END HEADER -->

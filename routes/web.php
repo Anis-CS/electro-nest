@@ -54,9 +54,9 @@ Route::get('/aboutUs',[WebsiteController::class, 'aboutUs'])->name('about.us');
 
 // start customer
 // start customer login and Register
-Route::get('/customer/register', [CustomerController::class, 'index'])->name('customer.register');
+Route::get('/customer/register', [CustomerController::class, 'RegistrationForm'])->name('customer.register');
 Route::post('/customer/register', [CustomerController::class, 'saveCustomerInfo'])->name('customer.register');
-Route::get('/customer/login', [CustomerController::class, 'loginFrom'])->name('customer.login');
+Route::get('/customer/login', [CustomerController::class, 'loginForm'])->name('customer.login');
 Route::post('/customer/login', [CustomerController::class, 'customerLoginCheck'])->name('customer.login');
 Route::get('/customer/logout', [CustomerController::class, 'logout'])->name('customer.logout');
 // Route::get('/customer/delete',[CustomerController::class,'deleteCustomer'])->name('customer.delete');
