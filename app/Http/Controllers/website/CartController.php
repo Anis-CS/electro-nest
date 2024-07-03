@@ -88,4 +88,5 @@ class CartController extends Controller
         Cart::remove($id);
         return redirect()->route('carts.index');
     }
+
 }

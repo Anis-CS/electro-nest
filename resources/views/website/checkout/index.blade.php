@@ -33,241 +33,136 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="toggle_info">
-                            <span><i class="fas fa-user"></i>Returning customer? <a href="{{route('customer.login')}}" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here to login</a></span>
-                        </div>
-                        <div class="panel-collapse collapse login_form" id="loginform">
-                            <div class="panel-body">
-                                <p>If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
-                                <form method="post">
-                                    <div class="form-group mb-3">
-                                        <input type="text" required="" class="form-control" name="email" placeholder="Username Or Email">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input class="form-control" required="" type="password" name="password" placeholder="Password">
-                                    </div>
-                                    <div class="login_footer form-group mb-3">
-                                        <div class="chek-form">
-                                            <div class="custome-checkbox">
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="remember" value="">
-                                                <label class="form-check-label" for="remember"><span>Remember me</span></label>
-                                            </div>
-                                        </div>
-                                        <a href="#">Forgot password?</a>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <button type="submit" class="btn btn-fill-out btn-block" name="login">Log in</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="toggle_info">
-                            <span><i class="fas fa-tag"></i>Have a coupon? <a href="#coupon" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here to enter your code</a></span>
-                        </div>
-                        <div class="panel-collapse collapse coupon_form" id="coupon">
-                            <div class="panel-body">
-                                <p>If you have a coupon code, please apply it below.</p>
-                                <div class="coupon field_form input-group">
-                                    <input type="text" value="" class="form-control" placeholder="Enter Coupon Code..">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-fill-out btn-sm" type="submit">Apply Coupon</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-12">
-                        <div class="medium_divider"></div>
                         <div class="divider center_icon"><i class="linearicons-credit-card"></i></div>
-                        <div class="medium_divider"></div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="heading_s1">
-                            <h4>Billing Details</h4>
-                        </div>
-
+                <form action="{{ route('new-order') }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="heading_s1">
+                                <h4>Billing Details</h4>
+                            </div>
                             <div class="form-group mb-3">
-                                <label>Full Name</label>
                                 @if(isset($customer->name))
                                     <input type="text" class="form-control" name="name" value="{{ $customer->name }}" readonly required>
                                 @else
-                                    <input type="text" class="form-control" name="name"  placeholder="Enter Your Name" required>
+                                    <input type="text" class="form-control" name="name"  placeholder="Enter Your Name." required>
                                 @endif
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" required class="form-control" name="lname" placeholder="Last name *">
+                                @if(isset($customer->phone))
+                                    <input type="text" class="form-control" name="phone" value="{{ $customer->phone }}" readonly>
+                                @else
+                                    <input type="number" required class="form-control" name="phone"  placeholder="Inter Your Phone Number.">
+                                @endif
                             </div>
                             <div class="form-group mb-3">
-                                <input class="form-control" required type="text" name="cname" placeholder="Company Name">
+                                @if(isset($customer->email))
+                                    <input type="email" class="form-control" value="{{ $customer->email }}" name="email" readonly>
+                                @else
+                                    <input type="email" required class="form-control" name="email" placeholder="Inter Your Email Address.">
+                                @endif
                             </div>
-                            <div class="form-group mb-3">
-                                <div class="custom_select">
-                                    <select class="form-control">
-                                        <option value="">Select an option...</option>
-                                        <option value="AX">Aland Islands</option>
-                                        <option value="AF">Afghanistan</option>
-                                        <option value="AL">Albania</option>
-                                        <option value="DZ">Algeria</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" name="billing_address" required="" placeholder="Address *">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" name="billing_address2" required="" placeholder="Address line2">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required type="text" name="city" placeholder="City / Town *">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required type="text" name="state" placeholder="State / County *">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required type="text" name="zipcode" placeholder="Postcode / ZIP *">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required type="text" name="phone" placeholder="Phone *">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required type="text" name="email" placeholder="Email address *">
-                            </div>
-                            <div class="form-group mb-3">
-                                <div class="chek-form">
-                                    <div class="custome-checkbox">
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount">
-                                        <label class="form-check-label label_info" for="createaccount"><span>Create an account?</span></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group create-account mb-3">
-                                <input class="form-control" required type="password" placeholder="Password" name="password" >
-                            </div>
-                            <div class="ship_detail">
-                                <div class="form-group mb-3">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="differentaddress">
-                                            <label class="form-check-label label_info" for="differentaddress"><span>Ship to a different address?</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="different_address">
-                                    <div class="form-group mb-3">
-                                        <input type="text" required class="form-control" name="fname" placeholder="First name *">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input type="text" required class="form-control" name="lname" placeholder="Last name *">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input class="form-control" required type="text" name="cname" placeholder="Company Name">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <div class="custom_select">
-                                            <select class="form-control">
-                                                <option value="">Select an option...</option>
-                                                <option value="AX">Aland Islands</option>
-                                                <option value="AF">Afghanistan</option>
-                                                <option value="AL">Albania</option>
 
-                                            </select>
+                            <div class="form-group mb-3">
+                                @if(isset($customer->address))
+                                    <input type="text" class="form-control" value="{{ $customer->address }}" name="address" readonly>
+                                @else
+                                    <input type="text" class="form-control" name="address" placeholder="Inter Your Address.">
+                                @endif
+                            </div>
+
+                            <div class="form-group mb-0">
+                                <h4>Inter Product Recived Location</h4>
+                                <div class="form-group mb-3">
+                                    <div class="custom_select">
+                                        <select name="area" class="form-control" required onchange="getPrice(this.value)">
+                                            <option selected disabled>Select an District</option>
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->id }}">{{ $area->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <textarea rows="3" class="form-control" name="shippingAddress" placeholder="Product Recived Location." required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="order_review">
+                                <div class="heading_s1">
+                                    <h4>Your Orders</h4>
+                                </div>
+                                <div class="table-responsive order_table">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($cartsProduct as $product)
+                                            <tr>
+                                                <td>{{ $product->name }} <span class="product-qty">x {{ $product->qty }}</span></td>
+                                                <td>{{ ($product->subtotal) }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>SubTotal</th>
+                                            <td class="product-subtotal" id="subTotal">{{ Cart::subtotal() }}</td>
+                                            <input type="hidden" value="{{ Cart::subtotal() }}" name="subTotal">
+                                        </tr>
+                                        <tr>
+                                            <th>Total Tax(21%)</th>
+                                            <td id="taxTotal">{{ $tax = Cart::tax() }}</td>
+                                            <input type="hidden" value="{{ $tax }}" name="tax_total">
+                                        </tr>
+                                        <tr>
+                                            <th>Shipping</th>
+                                            @php($shipping = 0)
+                                            <input type="hidden" name="shipping_total" value="{{ $shipping }}" id="showPriceInput">
+                                            <td><label for="free-shipping" id="showPrice">{{ $shipping }}</label></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total</th>
+                                            <td class="product-subtotal" id="totalPayableInput">{{ $orderTotal = Cart::total() }}</td>
+                                            <input type="hidden" value="{{ $orderTotal }}" name="order_total" id="totalPayableInput">
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="payment_method">
+                                    <div class="heading_s1">
+                                        <h4>Payment</h4>
+                                    </div>
+                                    <div class="payment_option">
+                                        <div class="custome-radio">
+                                            <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" value="option3" checked="">
+                                            <label class="form-check-label" for="exampleRadios3">Cash On Delivery</label>
+                                            <p data-method="option3" class="payment-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration. </p>
+                                        </div>
+                                        <div class="custome-radio">
+                                            <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
+                                            <label class="form-check-label" for="exampleRadios4">Online Payment</label>
+                                            <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                        </div>
+                                        <div class="custome-radio">
+                                            <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="option5">
+                                            <label class="form-check-label" for="exampleRadios5">Check Payment</label>
+                                            <p data-method="option5" class="payment-text">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <input type="text" class="form-control" name="billing_address" required="" placeholder="Address *">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input type="text" class="form-control" name="billing_address2" required="" placeholder="Address line2">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input class="form-control" required type="text" name="city" placeholder="City / Town *">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input class="form-control" required type="text" name="state" placeholder="State / County *">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <input class="form-control" required type="text" name="zipcode" placeholder="Postcode / ZIP *">
-                                    </div>
                                 </div>
+                                <button type="submit" class="btn btn-fill-out btn-block">Place Order</button>
                             </div>
-                            <div class="heading_s1">
-                                <h4>Additional information</h4>
-                            </div>
-                            <div class="form-group mb-0">
-                                <textarea rows="5" class="form-control" placeholder="Order notes"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="order_review">
-                            <div class="heading_s1">
-                                <h4>Your Orders</h4>
-                            </div>
-                            <div class="table-responsive order_table">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Total</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($cartsProduct as $product)
-                                        <tr>
-                                            <td>{{ $product->name }} <span class="product-qty">x {{ $product->qty }}</span></td>
-                                            <td>{{ ($product->subtotal) }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>SubTotal</th>
-                                        <td class="product-subtotal">{{ Cart::subtotal() }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Shipping</th>
-                                        <td>Free Shipping</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total</th>
-                                        <td class="product-subtotal">$349.00</td>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="payment_method">
-                                <div class="heading_s1">
-                                    <h4>Payment</h4>
-                                </div>
-                                <div class="payment_option">
-                                    <div class="custome-radio">
-                                        <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" value="option3" checked="">
-                                        <label class="form-check-label" for="exampleRadios3">Direct Bank Transfer</label>
-                                        <p data-method="option3" class="payment-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration. </p>
-                                    </div>
-                                    <div class="custome-radio">
-                                        <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
-                                        <label class="form-check-label" for="exampleRadios4">Check Payment</label>
-                                        <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                    </div>
-                                    <div class="custome-radio">
-                                        <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="option5">
-                                        <label class="form-check-label" for="exampleRadios5">Paypal</label>
-                                        <p data-method="option5" class="payment-text">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="btn btn-fill-out btn-block">Place Order</a>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
         <!-- END SECTION SHOP -->
@@ -277,3 +172,47 @@
     <!-- END MAIN CONTENT -->
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the elements
+        const subTotalElement = document.getElementById('subTotal');
+        const taxTotalElement = document.getElementById('taxTotal');
+        const shippingElement = document.getElementById('showPrice');
+        const totalPayableElement = document.getElementById('totalPayableInput');
+
+        // Parse the values
+        const subTotal = parseFloat(subTotalElement.textContent.replace(/[^\d.-]/g, ''));
+        const taxTotal = parseFloat(taxTotalElement.textContent.replace(/[^\d.-]/g, ''));
+        const shipping = parseFloat(shippingElement.textContent.replace(/[^\d.-]/g, ''));
+
+        // Calculate the total
+        const totalPayable = subTotal + taxTotal + shipping;
+
+        // Update the total payable element
+        totalPayableElement.textContent = totalPayable.toFixed(2);
+    });
+
+    function getPrice(id) {
+        $.ajax({
+            type: "GET",
+            url: "{{ route('get-price-by-area') }}",
+            data: {id: id},
+            dataType: "JSON",
+            success: function(response) {
+                var shippingTotal = Number(response.price);
+                var subTotal = parseFloat($('#subTotal').text().replace(/[^\d.-]/g, ''));
+                var taxAmount = parseFloat($('#taxTotal').text().replace(/[^\d.-]/g, ''));
+                var totalPayable = subTotal + taxAmount + shippingTotal;
+                $('#showPrice').text(shippingTotal.toFixed(2));
+                $('#showPriceInput').val(shippingTotal.toFixed(2));
+                $('#totalPayableInput').text(totalPayable.toFixed(2));
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+                // Handle error if needed
+            }
+        });
+    }
+</script>

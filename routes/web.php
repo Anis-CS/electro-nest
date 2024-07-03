@@ -18,6 +18,7 @@ use App\Http\Controllers\admin\OfferController;
 use App\Http\Controllers\admin\PrivacyAndPolicyController;
 use App\Http\Controllers\website\CategoryByProductController;
 use App\Http\Controllers\website\CartController;
+use App\Http\Controllers\website\CheckoutController;
 
 
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -27,6 +28,8 @@ Route::get('/product-detail/{id}',[WebsiteController::class, 'productDetails'])-
 Route::resources(['carts'=>CartController::class]);
 Route::get('/checkout', [WebsiteController::class, 'checkout'])->name('checkout');
 Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
+Route::get('/get-price-by-area',[WebsiteController::class,'getPriceByArea'])->name('get-price-by-area');
+Route::post('/new-order',[CheckoutController::class,'newOrder'])->name('new-order');
 
 Route::get('/wishlist', [WebsiteController::class, 'wishlist'])->name('wishlist');
 Route::get('/offer-product/{id}', [WebsiteController::class, 'offers'])->name('product-offer');

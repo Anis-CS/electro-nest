@@ -44,12 +44,7 @@
 </script>
 <!-- End of StatCounter Code -->
 
-
-
-
-
-
-
+            {{--Customize Js--}}
 
 <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 

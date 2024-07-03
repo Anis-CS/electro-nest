@@ -13,6 +13,7 @@ use App\Models\ProductSize;
 use App\Models\ShippingArea;
 use App\Models\SubCategory;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 use Session;
 use Cart;
 
@@ -158,5 +159,15 @@ class WebsiteController extends Controller
         return view('website.policy.pageFour',[
 
         ]);
+    }
+    public function getPriceByArea(Request $request)
+    {
+        $area = ShippingArea::find($request->id);
+
+        if (!$area) {
+            return response()->json(['error' => 'Area not found'], 404);
+        }
+
+        return response()->json(['price' => $area->price]);
     }
 }
