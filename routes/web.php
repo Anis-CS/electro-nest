@@ -55,7 +55,6 @@ Route::get('/faq',[WebsiteController::class, 'faq'])->name('faq');
 Route::get('/aboutUs',[WebsiteController::class, 'aboutUs'])->name('about.us');
 
 
-// start customer
 // start customer login and Register
 Route::get('/customer/register', [CustomerController::class, 'RegistrationForm'])->name('customer.register');
 Route::post('/customer/register', [CustomerController::class, 'saveCustomerInfo'])->name('customer.register');
@@ -66,6 +65,8 @@ Route::get('/customer/logout', [CustomerController::class, 'logout'])->name('cus
 
 
 // End customer
+
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
 

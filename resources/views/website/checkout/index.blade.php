@@ -78,7 +78,7 @@
                                 <h4>Inter Product Recived Location</h4>
                                 <div class="form-group mb-3">
                                     <div class="custom_select">
-                                        <select name="area" class="form-control" required onchange="getPrice(this.value)">
+                                        <select name="shipping_area_id" class="form-control" required onchange="getPrice(this.value)">
                                             <option selected disabled>Select an District</option>
                                             @foreach($areas as $area)
                                                 <option value="{{ $area->id }}">{{ $area->name }}</option>
@@ -86,9 +86,10 @@
                                         </select>
                                     </div>
                                 </div>
-                                <textarea rows="3" class="form-control" name="shippingAddress" placeholder="Product Recived Location." required></textarea>
+                                <textarea rows="3" class="form-control" name="delivery_address" placeholder="Product Recived Location." required></textarea>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="order_review">
                                 <div class="heading_s1">
@@ -106,20 +107,20 @@
                                         @foreach($cartsProduct as $product)
                                             <tr>
                                                 <td>{{ $product->name }} <span class="product-qty">x {{ $product->qty }}</span></td>
-                                                <td>{{ ($product->subtotal) }}</td>
+                                                <td>{{ $product->subtotal }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                         <tfoot>
                                         <tr>
                                             <th>SubTotal</th>
-                                            <td class="product-subtotal" id="subTotal">{{ Cart::subtotal() }}</td>
-                                            <input type="hidden" value="{{ Cart::subtotal() }}" name="subTotal">
+                                            <td class="product-subtotal" id="subTotal">{{ $order_total = Cart::subtotal() }}</td>
+                                            <input type="hidden" name="order_total" value="{{ $order_total }}">
                                         </tr>
                                         <tr>
                                             <th>Total Tax(21%)</th>
                                             <td id="taxTotal">{{ $tax = Cart::tax() }}</td>
-                                            <input type="hidden" value="{{ $tax }}" name="tax_total">
+                                            <input type="hidden" value="{{ Cart::tax() }}" name="tax_total">
                                         </tr>
                                         <tr>
                                             <th>Shipping</th>
@@ -130,7 +131,7 @@
                                         <tr>
                                             <th>Total</th>
                                             <td class="product-subtotal" id="totalPayableInput">{{ $orderTotal = Cart::total() }}</td>
-                                            <input type="hidden" value="{{ $orderTotal }}" name="order_total" id="totalPayableInput">
+                                            <input type="hidden" value="{{ Cart::total() }}" name="order_total" id="totalPayableInput">
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -141,17 +142,17 @@
                                     </div>
                                     <div class="payment_option">
                                         <div class="custome-radio">
-                                            <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" value="option3" checked="">
+                                            <input class="form-check-input" required="" type="radio" name="payment_method" id="exampleRadios3" value="Cush" checked="">
                                             <label class="form-check-label" for="exampleRadios3">Cash On Delivery</label>
                                             <p data-method="option3" class="payment-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration. </p>
                                         </div>
                                         <div class="custome-radio">
-                                            <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
+                                            <input class="form-check-input" type="radio" name="payment_method" id="exampleRadios4" value="Online">
                                             <label class="form-check-label" for="exampleRadios4">Online Payment</label>
                                             <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                         </div>
                                         <div class="custome-radio">
-                                            <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="option5">
+                                            <input class="form-check-input" type="radio" name="payment_method" id="exampleRadios5" value="Bank">
                                             <label class="form-check-label" for="exampleRadios5">Check Payment</label>
                                             <p data-method="option5" class="payment-text">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
                                         </div>
