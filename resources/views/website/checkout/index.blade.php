@@ -106,7 +106,18 @@
                                         <tbody>
                                         @foreach($cartsProduct as $product)
                                             <tr>
-                                                <td>{{ $product->name }} <span class="product-qty">x {{ $product->qty }}</span></td>
+                                                <td>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                Name : {{ $product->name }}</br>
+                                                                Price: {{ $product->price }} <span class="product-qty">x {{ $product->qty }}</span></br>
+                                                                Code :{{ $product->weight }}, Color :{{ $product->options->color }}, Size :{{ $product->options->size }}
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
                                                 <td>{{ $product->subtotal }}</td>
                                             </tr>
                                         @endforeach
@@ -120,7 +131,7 @@
                                         <tr>
                                             <th>Total Tax(21%)</th>
                                             <td id="taxTotal">{{ $tax = Cart::tax() }}</td>
-                                            <input type="hidden" value="{{ Cart::tax() }}" name="tax_total">
+                                            <input type="hidden" value="{{ $tax }}" name="tax_total">
                                         </tr>
                                         <tr>
                                             <th>Shipping</th>

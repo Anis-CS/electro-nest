@@ -63,6 +63,7 @@
                             <div class="pr_detail">
                                 <div class="product_description">
                                     <h4 class="product_title"><a href="#">{{ $product->name }}</a></h4>
+                                    <h5 >Product Code :{{ $product->code }}</a></h5>
                                     <div class="product_price">
                                         @if($product->selling_price <= 0)
                                             <span class="price">BD.{{ $product->regular_price }} /-</span>
@@ -129,9 +130,6 @@
                                     </div>
                                 </div>
                                 <hr />
-                                <ul class="product-meta">
-                                    <li>Product Code: <a href="#">{{ $product->code }}</a></li>
-                                </ul>
 
                                 <div class="product_share">
                                     <span>Share:</span>
@@ -284,7 +282,7 @@
                                <div class="item">
                                 <div class="product">
                                     <div class="product_img">
-                                        <a href="shop-product-detail.html">
+                                        <a href="{{ route('product.details',['id'=>$product->id]) }}">
                                             <img src="{{ asset( $product->image) }}" alt="product_img1">
                                         </a>
                                         <div class="product_action_box">

@@ -3,17 +3,35 @@
 namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\ShippingArea;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Customer;
 use Session;
-use Cart;
 
 
 class CheckoutController extends Controller
 {
     private $customer, $order, $orderDetail;
+
+    public function checkout()
+    {
+        if(Session::get('customer_id')){
+            $this->customer = Customer::find(Session::get("customer_id"));
+        }
+        else{
+            $this->customer = '';
+        }
+
+        return view('website.checkout.index',
+            [
+                'areas'    =>ShippingArea::where('status',1)->get(),
+                'customer' => $this->customer,
+                'categories' => Category::where('status',1)->get(),
+            ]);
+    }
 
     public function newOrder(Request $request)
     {
@@ -32,7 +50,7 @@ class CheckoutController extends Controller
         }
         $this->order = Order::newOrder($request, $this->customer);
         OrderDetails::newOrderDetail($this->order);
-        return back();
+        return redirect('/');
 
     }
     public function completeOrder()

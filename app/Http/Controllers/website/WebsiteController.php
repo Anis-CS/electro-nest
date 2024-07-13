@@ -40,22 +40,7 @@ class WebsiteController extends Controller
 
         ]);
     }
-    public function checkout()
-    {
-        if(Session::get('customer_id')){
-            $this->customer = Customer::find(Session::get("customer_id"));
-        }
-        else{
-            $this->customer = '';
-        }
 
-        return view('website.checkout.index',
-            [
-                'areas'    =>ShippingArea::where('status',1)->get(),
-                'customer' => $this->customer,
-                'categories' => Category::where('status',1)->get(),
-            ]);
-    }
     public function cart()
     {
         return view('website.checkout.cart',[

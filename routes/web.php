@@ -26,7 +26,7 @@ Route::get('/website-product', [WebsiteController::class, 'product'])->name('web
 Route::get('/product-detail/{id}',[WebsiteController::class, 'productDetails'])->name('product.details');
 
 Route::resources(['carts'=>CartController::class]);
-Route::get('/checkout', [WebsiteController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
 Route::get('/get-price-by-area',[WebsiteController::class,'getPriceByArea'])->name('get-price-by-area');
 Route::post('/new-order',[CheckoutController::class,'newOrder'])->name('new-order');
