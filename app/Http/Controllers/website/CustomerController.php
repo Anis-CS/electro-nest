@@ -10,7 +10,7 @@ use Session;
 
 class CustomerController extends Controller
 {
-    private $customer, $orders, $orderDetail, $customer_id, $wishlist;
+    private $customer;
 
     // customer Register
     public function RegistrationForm()
@@ -43,6 +43,13 @@ class CustomerController extends Controller
     public function saveCustomerInfo(Request $request)
     {
         $this->customer = Customer::saveInfo($request);
+        Session::put('customer_id', $this->customer->id);
+        Session::put('customer_name', $this->customer->name);
+        return redirect('/');
+    }
+    public function CustomerProfileUpdate(Request $request, string $id)
+    {
+        $this->customer = Customer::saveInfo($request,$id);
         Session::put('customer_id', $this->customer->id);
         Session::put('customer_name', $this->customer->name);
         return redirect('/');

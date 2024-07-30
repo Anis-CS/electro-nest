@@ -5,6 +5,8 @@ namespace App\Http\Controllers\website;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Offer;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\ProductColor;
 use App\Models\ProductImage;
@@ -19,7 +21,7 @@ use Cart;
 
 class WebsiteController extends Controller
 {
-    private $product;
+    private $product, $orders, $customer;
     public function index()
     {
         return view('website.home.index',[
@@ -56,11 +58,15 @@ class WebsiteController extends Controller
     public function offers($id)
     {
         return view('website.offer.product-offer',
-        ['offer' => Offer::find($id)]);
+        [
+            'offer' => Offer::find($id),
+            'categories'=>Category::all(),
+        ]);
     }
     public function productDetails($id)
     {
         $this->product = Product::find($id);
+
         return view('website.product.product-details',[
             'product' => $this->product,
             'productColors' => ProductColor::where('product_id',$this->product->id)->get(),
@@ -68,10 +74,7 @@ class WebsiteController extends Controller
             'productImages' => ProductImage::where('product_id',$this->product->id)->get(),
             'ShippingAreas'=>ShippingArea::all(),
             'categories'=>Category::where('status',1)->get(),
-
             'sliderproduct'=>Product::where('status',1)->latest()->take(6)->get(),
-
-
             'products'=>Product::where('status',1)->latest()->take(4)->get()
         ]);
     }
@@ -86,8 +89,12 @@ class WebsiteController extends Controller
 
     public function customerProfile()
     {
-        return view('website.customer.customer-info.profile',[
 
+        $this->orders = Order::where('customer_id', Session::get('customer_id'))->orderBy('id', 'desc')->get();
+        return view('website.customer.customer-info.profile',
+        [
+            'orders'=>$this->orders,
+            'customer'=>Customer::find(Session::get('customer_id')),
         ]);
     }
 

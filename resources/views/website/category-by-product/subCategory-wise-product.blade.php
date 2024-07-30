@@ -66,12 +66,12 @@
                             </div>
                         </div>
                         <div class="row shop_container">
-                            @foreach ($products as $product)
+                            @foreach ($subCategoryWiseProducts as $subCategoryWiseProduct)
                             <div class="col-md-4 col-6">
                                 <div class="product">
                                     <div class="product_img">
-                                        <a href="{{ route('product.details',['id'=>$product->id]) }}">
-                                            <img src="{{ asset($product->image) }}" alt="product_img1">
+                                        <a href="{{ route('product.details',['id'=>$subCategoryWiseProduct->id]) }}">
+                                            <img src="{{ asset($subCategoryWiseProduct->image) }}" alt="product_img1">
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
@@ -82,12 +82,12 @@
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a href="{{ route('product.details',['id'=>$product->id]) }}">{{ $product->name }}</a></h6>
+                                        <h6 class="product_title"><a href="{{ route('product.details',['id'=>$subCategoryWiseProduct->id]) }}">{{ $subCategoryWiseProduct->name }}</a></h6>
                                         <div class="product_price">
-                                            <span class="price">{{ $product->selling_price }}</span>
-                                            <del>{{ $product->regular_price }}</del>
+                                            <span class="price">{{ $subCategoryWiseProduct->selling_price }}</span>
+                                            <del>{{ $subCategoryWiseProduct->regular_price }}</del>
                                             <div class="on_sale">
-                                                <span>{{ $product->discount_amount }}{{ $product->discount_type == 'fixed' ? 'TK' : '%' }} Off</span>
+                                                <span>{{ $subCategoryWiseProduct->discount_amount }}{{ $subCategoryWiseProduct->discount_type == 'fixed' ? 'TK' : '%' }} Off</span>
                                             </div>
                                         </div>
                                     </div>
@@ -107,6 +107,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+                        @foreach ($subCategoryWiseProducts as $subCategoryWiseProduct)
                         <div class="sidebar">
                             <div class="widget">
                                 <h5 class="widget_title">Categories</h5>
@@ -118,49 +119,23 @@
                             </div>
                             <div class="widget">
                                 <h5 class="widget_title">Brand</h5>
-                                <ul class="list_brand">
-                                    <li>
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="Arrivals" value="">
-                                            <label class="form-check-label" for="Arrivals"><span>New Arrivals</span></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="Lighting" value="">
-                                            <label class="form-check-label" for="Lighting"><span>Lighting</span></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="Tables" value="">
-                                            <label class="form-check-label" for="Tables"><span>Tables</span></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="Chairs" value="">
-                                            <label class="form-check-label" for="Chairs"><span>Chairs</span></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="Accessories" value="">
-                                            <label class="form-check-label" for="Accessories"><span>Accessories</span></label>
-                                        </div>
-                                    </li>
-                                </ul>
+                                @foreach($brands as $brand)
+                                    <ul class="list_brand">
+                                        <li>
+                                            <div class="custome-checkbox">
+                                                <input class="form-check-input" type="checkbox" name="checkbox" id="Arrivals" value="">
+                                                <label class="form-check-label" for="Arrivals"><span>{{ $brand->name }}</span></label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                @endforeach
                             </div>
                             <div class="widget">
                                 <h5 class="widget_title">Size</h5>
                                 <div class="product_size_switch">
-                                    <span>xs</span>
-                                    <span>s</span>
-                                    <span>m</span>
-                                    <span>l</span>
-                                    <span>xl</span>
-                                    <span>2xl</span>
-                                    <span>3xl</span>
+                                    @foreach($sizes as $size)
+                                        <span>{{ $size->name }}</span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="widget">
@@ -177,6 +152,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

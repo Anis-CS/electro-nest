@@ -37,6 +37,7 @@
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
                                     <h3>Create an Account</h3>
+                                    <h4 class="text-danger text-center">{{ Session::get('message') }}</h4>
                                 </div>
                                 <form class="form-horizontal" action="{{ route('customer.register') }}" method="post">
                                     @csrf

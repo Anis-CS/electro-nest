@@ -45,17 +45,10 @@
                                         <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">Sl</th>
-                                            <th class="wd-15p border-bottom-0">Product Name</th>
                                             <th class="wd-15p border-bottom-0">Product Code</th>
-                                            <th class="wd-15p border-bottom-0">Category Name</th>
-                                            <th class="wd-15p border-bottom-0">Sub Category Name</th>
-                                            <th class="wd-15p border-bottom-0">Brand Name</th>
-                                            <th class="wd-15p border-bottom-0">Unit Name</th>
-                                            <th class="wd-15p border-bottom-0">Size Name</th>
-                                            <th class="wd-15p border-bottom-0">Color Name</th>
                                             <th class="wd-15p border-bottom-0">Regular Price</th>
                                             <th class="wd-15p border-bottom-0">Selling Price</th>
-                                            <th class="wd-15p border-bottom-0">Stock Amount</th>
+                                            <th class="wd-15p border-bottom-0">Stock</th>
                                             <th class="wd-20p border-bottom-0">Image</th>
                                             <th class="wd-10p border-bottom-0">Status</th>
                                             <th class="wd-25p border-bottom-0">Action</th>
@@ -65,22 +58,8 @@
                                         @foreach($products as $product)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $product->name }}</td>
+
                                                 <td>{{ $product->code }}</td>
-                                                <td>{{ $product->category->name }}</td>
-                                                <td>{{ $product->subCategory->name }}</td>
-                                                <td>{{ $product->brand->name }}</td>
-                                                <td>{{ $product->unit->name }}</td>
-                                                <td>
-                                                    @foreach ($product->sizes as $size)
-                                                        {{ $size->size->name.',' }}
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    @foreach ($product->colors as $color)
-                                                        {{ $color->color->name.',' }}
-                                                    @endforeach
-                                                </td>
                                                 <td>{{ $product->regular_price }}</td>
                                                 <td>{{ $product->selling_price }}</td>
                                                 <td>{{ $product->stock_amount }}</td>
@@ -105,15 +84,7 @@
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                     @endif
-
-
-                                                    <form action="{{ route('product.destroy', $product->id) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure delete this!!')">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>
+                                                    
                                                 </td>
                                             </tr>
                                         @endforeach

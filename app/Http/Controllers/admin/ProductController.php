@@ -55,7 +55,7 @@ class ProductController extends Controller
         ProductColor::newProductColor($request->color, $this->product->id);
         ProductSize::newProductSize($request->size, $this->product->id);
         ProductImage::newProductImage($request->other_image, $this->product->id);
-        return back()->with('message','Product added successfully');
+        return redirect(route('product.index'))->with('message','Product added successfully');
     }
 
     /**
@@ -86,6 +86,7 @@ class ProductController extends Controller
             'sizes' => Size::where('status', 1)->get(),
             'units' => Unit::where('status', 1)->get()
         ]);
+
     }
 
     /**
@@ -97,7 +98,7 @@ class ProductController extends Controller
         ProductColor::updateProductColor($request->color, $this->product->id);
         ProductSize::updateProductSize($request->size, $this->product->id);
         ProductImage::updateProductImage($request->other_image, $this->product->id);
-        return back()->with('message','Product updated successfully');
+        return redirect(route('product.index'))->with('message','Product updated successfully');
     }
 
     /**

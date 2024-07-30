@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Customer;
 use Session;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 
 class CheckoutController extends Controller
@@ -33,12 +34,16 @@ class CheckoutController extends Controller
             ]);
     }
 
+
     public function newOrder(Request $request)
     {
 
-        if (Session::get('customer_id')) {
+        if (Session::get('customer_id'))
+        {
             $this->customer = Customer::find(Session::get('customer_id'));
-        } else {
+        }
+        else
+            {
             $this->customer = Customer::where('phone', $request->phone)
                 ->orWhere('email', $request->email)
                 ->first();
@@ -48,10 +53,17 @@ class CheckoutController extends Controller
             Session::put('customer_id', $this->customer->id);
             Session::put('customer_name', $this->customer->name);
         }
-        $this->order = Order::newOrder($request, $this->customer);
-        OrderDetails::newOrderDetail($this->order);
-        return redirect('/');
-
+        if($request->payment_method == 'Online')
+        {
+            $sslCommerzPayment = new SslCommerzPaymentController();
+            $sslCommerzPayment->index($request, $this->customer);
+        }
+        else
+            {
+                $this->order = Order::newOrder($request, $this->customer);
+                OrderDetails::newOrderDetail($this->order);
+                return redirect('/');
+            }
     }
     public function completeOrder()
     {

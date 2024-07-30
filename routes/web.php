@@ -19,6 +19,7 @@ use App\Http\Controllers\admin\PrivacyAndPolicyController;
 use App\Http\Controllers\website\CategoryByProductController;
 use App\Http\Controllers\website\CartController;
 use App\Http\Controllers\website\CheckoutController;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -58,6 +59,7 @@ Route::get('/aboutUs',[WebsiteController::class, 'aboutUs'])->name('about.us');
 // start customer login and Register
 Route::get('/customer/register', [CustomerController::class, 'RegistrationForm'])->name('customer.register');
 Route::post('/customer/register', [CustomerController::class, 'saveCustomerInfo'])->name('customer.register');
+Route::get('/customer/profile/{id}', [CustomerController::class, 'CustomerProfileUpdate'])->name('customer.update');
 Route::get('/customer/login', [CustomerController::class, 'loginForm'])->name('customer.login');
 Route::post('/customer/login', [CustomerController::class, 'customerLoginCheck'])->name('customer.login');
 Route::get('/customer/logout', [CustomerController::class, 'logout'])->name('customer.logout');
@@ -65,6 +67,20 @@ Route::get('/customer/logout', [CustomerController::class, 'logout'])->name('cus
 
 
 // End customer
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
 
 
 
