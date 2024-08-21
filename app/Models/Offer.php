@@ -9,49 +9,33 @@ use App\Models\OfferDetail;
 class Offer extends Model
 {
     use HasFactory;
-    private static $offer, $image, $imageUrl, $directory, $imageName, $extension, $offerDetail, $offerDetails;
+    private static $offer, $offerDetail, $offerDetails;
 
-
-    private static function getImageUrl($request){
-        self::$image = $request->file('image');
-        self::$extension = self::$image->getClientOriginalExtension();
-        self::$imageName = rand(10000, 500000).'.'.self::$extension;
-        self::$directory = 'upload/offer-images/';
-        self::$image->move(self::$directory, self::$imageName);
-        self::$imageUrl = self::$directory.self::$imageName;
-    }
-
-    public static function newOffer($request){
-
-        if ($request->file('image'))
+    public static function saveInfo($request, $id=null)
+    {
+        if ($id != null)
         {
-            self::getImageUrl($request);
+            self::$offer = Offer::find($id);
         }
-        else{
-            self::$imageUrl = ' ';
+        else
+        {
+            self::$offer = new Offer();
         }
-
-        return self::saveBasicInfo(new Offer(), $request, self::$imageUrl);
-    }
-
-    public static function updateOffer($request, $id){
-        self::$offer = Offer::find($id);
-
-        if ($request->file('image'))
+        if ($request->image)
         {
             if (file_exists(self::$offer->image))
             {
                 unlink(self::$offer->image);
             }
-
-            self::getImageUrl($request);
+            $imageUrl = getImageUrl($request->image, 'upload/offer-images/');
         }
-        else{
-            self::$imageUrl = self::$offer->image;
-        }
-
-        self::saveBasicInfo(self::$offer, $request, self::$imageUrl);
+        else
+            {
+                $imageUrl = self::$offer->image;
+            }
+        return self::saveBasicInfo(self::$offer, $request, $imageUrl);
     }
+
 
     public static function saveBasicInfo($offer, $request, $imageUrl){
         $startDateTimeArray = explode('T', $request->start_date);

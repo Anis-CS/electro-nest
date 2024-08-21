@@ -31,9 +31,9 @@ class Order extends Model
         self::$order = Order::find($id);
         if (self::$order->order_status == 'Pending')
         {
-            self::$order->order_status         = $request->order_status;
-            self::$order->delivery_status      = $request->order_status;
-            self::$order->payment_status       = $request->order_status;
+            self::$order->order_status       = $request->order_status;
+            self::$order->delivery_status    = $request->order_status;
+            self::$order->payment_status     = $request->order_status;
 
         }
         elseif(self::$order->order_status == 'Processing')
@@ -42,18 +42,18 @@ class Order extends Model
             self::$order->order_status       = $request->order_status;
             self::$order->delivery_address   = $request->delivery_address;
             self::$order->delivery_status    = $request->order_status;
-            self::$order->payment_status      = $request->order_status;
+            self::$order->payment_status     = $request->order_status;
         }
         elseif(self::$order->order_status == 'Complete')
         {
-            self::$order->order_status         = $request->order_status;
-            self::$order->delivery_status      = $request->order_status;
-            self::$order->delivery_date        = date('Y-m-d');
-            self::$order->delivery_timestamp    = strtotime(date('Y-m-d'));
-            self::$order->payment_status         = $request->order_status;
-            self::$order->payment_amount         = self::$order->order_total;
-            self::$order->payment_date           = date('Y-m-d');
-            self::$order->payment_timestamp      =  strtotime(date('Y-m-d'));
+            self::$order->order_status       = $request->order_status;
+            self::$order->delivery_status    = $request->order_status;
+            self::$order->delivery_date      = date('Y-m-d');
+            self::$order->delivery_timestamp = strtotime(date('Y-m-d'));
+            self::$order->payment_status     = $request->order_status;
+            self::$order->payment_amount     = self::$order->order_total;
+            self::$order->payment_date       = date('Y-m-d');
+            self::$order->payment_timestamp  =  strtotime(date('Y-m-d'));
         }
         elseif(self::$order->order_status == 'Cancel')
         {

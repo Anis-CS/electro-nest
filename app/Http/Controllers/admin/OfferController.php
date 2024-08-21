@@ -35,7 +35,7 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        $this->offer = Offer::newOffer($request);
+        $this->offer = Offer::saveInfo($request);
         OfferDetail::newOfferDetail($request->product, $this->offer->id);
         foreach ($request->product as $id){
             $product = Product::find($id);
@@ -74,7 +74,18 @@ class OfferController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Offer::updateOffer($request, $id);
+        $this->offer = Offer::saveInfo($request,$id);
+        OfferDetail::updateOfferDetail($request->product, $this->offer->id);
+
+        foreach ($request->product as $id)
+        {
+            $product = Product::find($id);
+            $sellingPrice = $product->regular_price - round((($product->regular_price * $request->percentage)/100) );
+            $product->selling_price = $sellingPrice;
+            $product->discount_type = 'percent';
+            $product->discount_amount = $request->percentage;
+            $product->save();
+        }
         return redirect('/offer')->with('message', 'Offer Info Updated Successfully');
     }
 
