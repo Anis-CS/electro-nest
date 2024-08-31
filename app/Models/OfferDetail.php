@@ -23,7 +23,7 @@ class OfferDetail extends Model
 
     public static function updateOfferDetail($products,$offerId)
     {
-        self::$productOffers  = OfferDetail::where('product_id',$offerId)->get();
+        self::$productOffers  = OfferDetail::where('offer_id',$offerId)->get();
         foreach(self::$productOffers as self::$productOffer)
         {
             self::$productOffer->delete();

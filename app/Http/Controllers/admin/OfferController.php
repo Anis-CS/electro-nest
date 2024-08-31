@@ -75,8 +75,7 @@ class OfferController extends Controller
     public function update(Request $request, string $id)
     {
         $this->offer = Offer::saveInfo($request,$id);
-        OfferDetail::updateOfferDetail($request->product, $this->offer->id);
-
+         $this->detail = OfferDetail::updateOfferDetail($request->product, $this->offer->id);
         foreach ($request->product as $id)
         {
             $product = Product::find($id);
