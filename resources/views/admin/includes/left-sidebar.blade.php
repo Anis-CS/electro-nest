@@ -90,7 +90,9 @@
                         <span class="side-menu__label">Order Module</span><i class="angle fa fa-angle-right"></i>
                     </a>
                     <ul class="slide-menu">
-{{--                        <li><a href="{{ route('admin-order.manage') }}" class="slide-item">Manage Order</a></li>--}}
+                        <li><a href="{{ route('new-order-manage') }}" class="slide-item">New Order</a></li>
+{{--                        <li><a href="{{ route('admin-order.manage') }}" class="slide-item">Processing Order</a></li>--}}
+{{--                        <li><a href="{{ route('admin-order.manage') }}" class="slide-item">Complete Order</a></li>--}}
                     </ul>
                 </li>
                 <li class="slide">

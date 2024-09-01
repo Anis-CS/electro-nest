@@ -20,6 +20,7 @@ use App\Http\Controllers\website\CategoryByProductController;
 use App\Http\Controllers\website\CartController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\Admin\AdminOrderController;
 
 
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -89,24 +90,36 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
     //Setting Module Section
-    Route::resources(['category'=>CategoryController::class]);
-    Route::resources(['sub-category'=>SubCategoryController::class]);
-    Route::resources(['brand'=>BrandController::class]);
-    Route::resources(['color'=>ColorController::class]);
-    Route::resources(['size'=>SizeController::class]);
-    Route::resources(['unit'=>UnitController::class]);
-    Route::resources(['shipping-area'=>ShippingAreaController::class]);
-    Route::resources(['courier'=>CourierController::class]);
-    Route::resources(['offer'=>OfferController::class]);
+    Route::resources
+     ([
+        'category'=>CategoryController::class,
+        'sub-category'=>SubCategoryController::class,
+        'brand'=>BrandController::class,
+        'color'=>ColorController::class,
+        'size'=>SizeController::class,
+        'unit'=>UnitController::class,
+        'shipping-area'=>ShippingAreaController::class,
+        'courier'=>CourierController::class,
+        'offer'=>OfferController::class,
+        //Product Module Section
+        'product'=>ProductController::class,
+        //privacy Policy
+        'privacy-policy'=>PrivacyAndPolicyController::class,
+        'company'=>CompanyController::class
+
+    ]);
+
+
 
     //Product Module Section
-    Route::resources(['product'=>ProductController::class]);
     Route::get('/get-sub-category-by-category',[ProductController::class,'getSubCategoryByCategory'])->name('get-sub-category-by-category');
     Route::get('/product/status/{id}',[ProductController::class,'productInfo'])->name('product.status');
 
-    //privacy Policy
-    Route::resources(['privacy-policy'=>PrivacyAndPolicyController::class]);
-    Route::resources(['company'=>CompanyController::class]);
-
+    //Customer Order Manage
+    Route::get('/admin/order-manage',[AdminOrderController::class,'index'])->name('new-order-manage');
+    Route::get('/admin/order-detail/{id}',[AdminOrderController::class,'orderDetail'])->name('admin-order.detail',);
+    Route::get('/admin/order-edit/{id}',[AdminOrderController::class,'edit'])->name('admin-order.edit');
+    Route::post('/admin/order-update/{id}',[AdminOrderController::class,'update'])->name('admin-order.update');
+    Route::post('/admin/order-delete/{id}',[AdminOrderController::class,'delete'])->name('admin-order.delete');
 
 });
