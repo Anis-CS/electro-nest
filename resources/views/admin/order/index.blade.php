@@ -66,9 +66,9 @@
                                                     <a title="order Edit" href="{{ route('admin-order.edit',['id' => $order->id]) }}" class="btn btn-primary btn-sm me-2 float-start {{ $order->order_status == 'Complete' ? 'disabled' : '' }}">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-{{--                                                    <a title="order invoice" href="{{ route('admin-order.invoice', ['id' => $order->id]) }}" class="btn btn-info btn-sm me-2 float-start">--}}
-{{--                                                        <i class="fa fa-file"></i>--}}
-{{--                                                    </a>--}}
+                                                    <a title="order invoice" href="{{ route('admin-order.invoice', ['id' => $order->id]) }}" class="btn btn-info btn-sm me-2 float-start">
+                                                        <i class="fa fa-file"></i>
+                                                    </a>
 {{--                                                    <a title="download invoice" href="{{ route('admin-order.download-invoice', ['id' => $order->id]) }}" class="btn btn-secondary btn-sm me-2 float-start">--}}
 {{--                                                        <i class="fa fa-print"></i>--}}
 {{--                                                    </a>--}}

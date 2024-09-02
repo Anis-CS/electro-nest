@@ -140,7 +140,7 @@
                                             <td><label for="free-shipping" id="showPrice">{{ $shipping }}</label></td>
                                         </tr>
                                         <tr>
-                                            <th>Total</th>
+                                            <th>Total Amount</th>
                                             <td class="product-subtotal" id="totalPayableInput">{{ $orderTotal = Cart::total() }}</td>
                                             <input type="hidden" value="{{ Cart::total() }}" name="order_total" id="totalPayableInput">
                                         </tr>

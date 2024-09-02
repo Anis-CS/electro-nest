@@ -122,4 +122,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/admin/order-update/{id}',[AdminOrderController::class,'update'])->name('admin-order.update');
     Route::post('/admin/order-delete/{id}',[AdminOrderController::class,'delete'])->name('admin-order.delete');
 
+    Route::get('/admin/order-invoice/{id}',[AdminOrderController::class,'invoice'])->name('admin-order.invoice');
+    Route::get('/admin/invoice-download/{id}',[AdminOrderController::class,'downloadInvoice'])->name('admin-order.download-invoice');
+
+
 });

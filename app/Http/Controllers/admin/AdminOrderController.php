@@ -26,6 +26,23 @@ class AdminOrderController extends Controller
             'couriers'=>Courier::all()
         ]);
     }
+    public function invoice($id){
+
+        return view('admin.order.invoice',[
+            'order'=>Order::find($id),
+            'orderDetails'=>OrderDetails::where('order_id',$id)->get()
+        ]);
+    }
+    public function downloadInvoice($id){
+
+        $pdf = Pdf::loadView('admin.order.download-invoice',
+            [
+                'order'=>Order::find($id),
+                'orderDetails'=>OrderDetails::where('order_id',$id)->get()
+            ]);
+        return $pdf->download('invoice.pdf');
+
+    }
     public function update(Request $request, $id)
     {
         Order::updateOrder($request,$id);

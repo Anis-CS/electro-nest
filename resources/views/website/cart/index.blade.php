@@ -70,7 +70,7 @@
                                                     <input type="submit" class="btn btn-success btn-sm" value="Update"/>
                                                 </div></td>
                                             </form>
-                                            <td class="product-subtotal" data-title="Total">{{ $cart->price * $cart->qty }}</td>
+                                            <td class="product-subtotal" data-title="Total">{{ $cart->price * $cart->qty}}</td>
                                             <form action="{{ route('carts.destroy',$cart->rowId) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
@@ -104,7 +104,7 @@
                                     <tbody>
                                     <tr>
                                         <td class="cart_total_label">Cart Subtotal</td>
-                                        <td class="cart_total_amount">{{ Cart::subtotal() }}</td>
+                                        <td class="cart_total_amount">{{ $cart->price * $cart->qty }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
