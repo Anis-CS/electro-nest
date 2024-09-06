@@ -53,9 +53,9 @@
                                             <td class="product-thumbnail"><a href="#"><img src="{{ asset($cart->options->image) }}" alt="product1"></a></td>
                                             <td class="product-name" data-title="Product"><a href="#">
                                                     <b>Name : </b> {{ $cart->name }} <br/>
-                                                    <b>Code :</b> {{$cart->weight}} <br/>
-                                                    <b>Color :</b> {{$cart->options->color }} <br/>
-                                                    <b>Size :</b> {{$cart->options->size}} <br/>
+                                                    <b>Code :</b> {{ $cart->weight }} <br/>
+                                                    <b>Color :</b> {{ $cart->options->color }} <br/>
+                                                    <b>Size :</b> {{ $cart->options->size}} <br/>
                                                 </a>
 
                                             </td>
@@ -70,7 +70,7 @@
                                                     <input type="submit" class="btn btn-success btn-sm" value="Update"/>
                                                 </div></td>
                                             </form>
-                                            <td class="product-subtotal" data-title="Total">{{ $cart->price * $cart->qty}}</td>
+                                            <td class="product-subtotal" data-title="Total">{{ $cart->qty* $cart->price}}</td>
                                             <form action="{{ route('carts.destroy',$cart->rowId) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
@@ -104,7 +104,7 @@
                                     <tbody>
                                     <tr>
                                         <td class="cart_total_label">Cart Subtotal</td>
-                                        <td class="cart_total_amount">{{ $cart->price * $cart->qty }}</td>
+                                        <td class="cart_total_amount">{{ Cart::subtotal() }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -204,9 +204,9 @@
                                         <tr class="total">
                                             <td></td>
 
-                                            <td>Tax Amount : {{ $order->tax_total }}.BDT<br>
-                                                Delivery charge : {{ $order->shipping_total }}.BDT<br>
-                                                Total Amount : {{ $order->shipping_total+ $order->order_total }}.BDT<br>
+                                            <td><h5>Tax Amount : {{ $order->tax_total }}.BDT<br>
+                                                Delivery charge : {{ $shipping =$order->shipping_total }}.BDT<br>
+                                                    Total Amount : {{  $order->order_total }}.BDT</h5><br>
                                             </td>
                                         </tr>
                                     </table>

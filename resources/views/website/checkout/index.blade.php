@@ -142,7 +142,7 @@
                                         <tr>
                                             <th>Total Amount</th>
                                             <td class="product-subtotal" id="totalPayableInput">{{ $orderTotal = Cart::total() }}</td>
-                                            <input type="hidden" value="{{ Cart::total() }}" name="order_total" id="totalPayableInput">
+                                            <input type="hidden" value="{{ Cart::total() }}"  name="order_total" id="totalamount">
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -220,6 +220,8 @@
                 $('#showPrice').text(shippingTotal.toFixed(2));
                 $('#showPriceInput').val(shippingTotal.toFixed(2));
                 $('#totalPayableInput').text(totalPayable.toFixed(2));
+                $('#totalamount').val(totalPayable.toFixed(2));
+
             },
             error: function(xhr, status, error) {
                 console.error(xhr.responseText);

@@ -22,7 +22,9 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.add');
+        return view('admin.company.add',[
+            'companies' => Company::where('name','Electronests')->get(),
+    ]);
 
     }
 

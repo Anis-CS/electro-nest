@@ -45,13 +45,10 @@ Route::get('/privacy&policy/page-three', [WebsiteController::class, 'policyThree
 Route::get('/privacy&policy/page-four', [WebsiteController::class, 'policyFour'])->name('policyfour');
 Route::get('/term-condition', [WebsiteController::class, 'termCondition'])->name('term.condition');
 
-
 // End policy Info
 
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::get('/customer/profile', [WebsiteController::class, 'customerProfile'])->name('customerProfile');
-
-
 
 Route::get('/faq',[WebsiteController::class, 'faq'])->name('faq');
 Route::get('/aboutUs',[WebsiteController::class, 'aboutUs'])->name('about.us');

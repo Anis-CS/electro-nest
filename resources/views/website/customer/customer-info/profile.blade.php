@@ -86,16 +86,18 @@
                                                 </thead>
                                                 <tbody>
                                                 @foreach($orders as $order)
-                                                    @foreach($order->orderDetails as $orderDetail)
+
                                                     <tr>
+
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $order->id }}</td>
                                                         <td>{{ $order->order_date }}</td>
                                                         <td>{{ $order->order_status }}</td>
-                                                        <td>{{ $order->order_total }} for {{ $orderDetail->product_qty }} item</td>
+                                                        <td>{{ $order->order_total }} for @foreach($order->orderDetails as $orderDetail){{ $orderDetail->product_qty }}@endforeach item</td>
                                                         <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
+
                                                     </tr>
-                                                    @endforeach
+
                                                 @endforeach
                                                 </tbody>
                                             </table>
