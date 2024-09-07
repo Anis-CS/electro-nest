@@ -36,7 +36,6 @@
                                 <h3 class="card-title">Edit Policy Form</h3>
                             </div>
                             <div class="card-body">
-{{--                                <form class="form-horizontal" action="{{ route('privacy-policy.update', ->id) }}" method="POST" enctype="multipart/form-data">--}}
                                 <form class="form-horizontal" action="{{ route('privacy-policy.update', $policy->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -99,16 +98,15 @@
                                             <textarea class="form-control summernote" cols="30" rows="10" name="four_description" placeholder="Enter Policy Description">{{ $policy->four_description }}</textarea>
                                         </div>
                                     </div>
-
-                                    <button class="btn btn-primary" type="submit">Update Policy Info</button>
+                                    @if(Auth::user()->moderator=='admin')
+                                        <button class="btn btn-primary" type="submit">Update Policy Info</button>
+                                    @endif
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /row -->
-
-
 
             </div>
         </div>

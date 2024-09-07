@@ -21,6 +21,7 @@ use App\Http\Controllers\website\CartController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\admin\UserController;
 
 
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -85,6 +86,8 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
 
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/users',[UserController::class,'index'])->name('user.index');
+    Route::get('/user/create',[UserController::class,'create'])->name('user.create');
 
     //Setting Module Section
     Route::resources
@@ -113,7 +116,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/product/status/{id}',[ProductController::class,'productInfo'])->name('product.status');
 
     //Customer Order Manage
-    Route::get('/admin/order-manage',[AdminOrderController::class,'index'])->name('new-order-manage');
+    Route::get('/admin/order-manage',[AdminOrderController::class,'index'])->name('order-manage');
     Route::get('/admin/order-detail/{id}',[AdminOrderController::class,'orderDetail'])->name('admin-order.detail',);
     Route::get('/admin/order-edit/{id}',[AdminOrderController::class,'edit'])->name('admin-order.edit');
     Route::post('/admin/order-update/{id}',[AdminOrderController::class,'update'])->name('admin-order.update');
