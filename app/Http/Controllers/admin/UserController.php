@@ -13,7 +13,20 @@ class UserController extends Controller
             'users' => User::all()
         ]);
     }
+
     public function create(){
-        return view('admin.user.create');
+        return view('admin.user.add');
+    }
+
+    public function store(Request $request){
+        User::saveInfo($request);
+        return back()->with('message', 'User info Added successfully.');
+    }
+    public function edit($id){
+        return view('admin.user.edit',['user'=>User::find($id)]);
+    }
+    public function update($request,$id){
+        User::saveInfo($request,$id);
+        return back()->with('message', 'User info Added successfully.');
     }
 }

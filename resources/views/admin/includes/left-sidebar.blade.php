@@ -109,6 +109,7 @@
                         </a>
                         <ul class="slide-menu">
                             <li><a href="{{ route('user.index') }}" class="slide-item">Manage User</a></li>
+
                         </ul>
                     </li>
                 @endif

@@ -62,4 +62,40 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    private static $user;
+
+    public static function saveInfo($request, $id=null)
+    {
+        if ($id != null)
+        {
+            self::$user = User::find($id);
+        }
+        else
+        {
+            self::$user = new User();
+        }
+        if ($request->profile_photo_path)
+        {
+            if (file_exists(self::$user->profile_photo_path))
+            {
+                unlink(self::$user->profile_photo_path);
+            }
+            $imageUrl = getImageUrl($request->profile_photo_path, 'upload/user-images/');
+        }
+        else
+        {
+            $imageUrl = self::$user->profile_photo_path;
+        }
+        return self::saveBasicInfo(self::$user, $request, $imageUrl);
+    }
+    public static function saveBasicInfo($user, $request, $imageUrl){
+        $user->name                     = $request->name;
+        $user->moderator                = $request->moderator;
+        $user->email                    = $request->email;
+        $user->password                 = bcrypt($request->password);
+        $user->profile_photo_path       = $imageUrl;
+        $user->save();
+        return $user;
+    }
 }

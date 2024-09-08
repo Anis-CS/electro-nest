@@ -34,7 +34,7 @@
                         <div class="card">
                             <div class="card-header border-bottom">
                                 <span><h3 class="card-title">All Users</h3></span>
-                                <a href="{{ route('user.create') }}" class="btn btn-primary ms-auto d-block">Add user</a>
+                                <a href="{{ route('user.add') }}" class="btn btn-primary ms-auto d-block">Add user</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -52,7 +52,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($users as $user)
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
 
                                                 <td>{{ $user->name }}</td>
@@ -66,7 +66,7 @@
                                                     <a href="{{ route('product.show', $user->id) }}" class="btn btn-info btn-sm me-2 float-start">
                                                         <i class="fa fa-book"></i>
                                                     </a>
-                                                    <a href="{{ route('product.edit', $user->id) }}" class="btn btn-primary btn-sm me-2 float-start">
+                                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-sm me-2 float-start">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
 
